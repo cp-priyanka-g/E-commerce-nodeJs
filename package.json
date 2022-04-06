@@ -1,0 +1,24 @@
+{
+  "name": "e-commerce-nodejs",
+  "version": "1.0.0",
+  "description": "Shopping website using nodeJs, express using MVC pattern",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cp-priyanka-g/E-commerce-nodeJs.git"
+  },
+  "author": "Priyanka Gour",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cp-priyanka-g/E-commerce-nodeJs/issues"
+  },
+  "homepage": "https://github.com/cp-priyanka-g/E-commerce-nodeJs#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mysql": "^2.18.1"
+  }
+}
