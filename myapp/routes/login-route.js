@@ -6,6 +6,7 @@ var db  = require('../database');
 router.get('/login', function(req, res, next) {
   res.render('login-form');
 });
+
 router.post('/login', function(req, res){
     var emailAddress = req.body.email_address;
     var password = req.body.password;
