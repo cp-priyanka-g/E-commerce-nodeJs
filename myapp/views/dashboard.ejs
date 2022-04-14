@@ -4,45 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/userheader.css" rel="stylesheet" type="text/css">
     <title>Dashboard</title>
 </head>
 <body>
     <h2>Welcome to Ecommerce-Shopping Site</h2>
         <p><b>Login Email</b> - <%=email %></p>
 
-         <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-
-              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>  
-                
-                <li> <div class="dropdown">
-                  <button class="dropbtn">Dropdown 
-                    <i class="fa fa-caret-down"></i>
-                  </button>
-                  <div class="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                  </div>
-                </div> </li>
-                
-                  <li class="nav-item active">
-                    <a class="nav-link" href="/logout">Logout</a>
-                   </li>
-
-                  </ul>
-                   
-          </nav>
+        <div class="navbar">
+          <a href="/dashboard">Home</a>
+          <div class="subnav">
+            <button class="subnavbtn">Men<i class="fa fa-caret-down"></i></button>
+            <div class="subnav-content">
+              <a href="#company">TopWear</a>
+              <a href="#team">Bottomwear</a>
+              <a href="#careers">Sports</a>
+            </div>
+          </div> 
+          <div class="subnav">
+            <button class="subnavbtn">Women<i class="fa fa-caret-down"></i></button>
+            <div class="subnav-content">
+               <a href="#deliver">Indian</a>
+              <a href="#package">Western</a>
+              <a href="#express">Sports</a>
+            </div>
+          </div> 
+          <div class="subnav">
+            <button class="subnavbtn">Kids<i class="fa fa-caret-down"></i></button>
+            <div class="subnav-content">
+              <a href="#link1">Boy</a>
+              <a href="#link2">Girl</a>
+              <a href="#link3">infant</a>
+             
+            </div>
+          </div>
+          <a class="nav-link" href="#">Search Product</a>
+          <a class="nav-link" href="3">Favourite</a>
+          <a class="nav-link" href="/logout">Logout</a>
         </div>
+        
+                    
+           
       
 </body>
 </html>

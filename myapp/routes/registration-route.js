@@ -3,6 +3,7 @@ var nodemailer = require("nodemailer");
 var router = express.Router();
 var db = require("../database/config.js");
 var nodemailer = require('nodemailer');
+const { getMaxListeners } = require("../database/config.js");
 
 // to display registration form
 router.get("/register", function (req, res, next) {
@@ -26,10 +27,12 @@ router.post("/register", function (req, res, next) {
   db.query(sql, [inputData.email_address], function (err, data, fields) {
 
     if (err) throw err;
-    if (data.length > 0) {
+
+    if (data.length===1) {
               
       var msg = inputData.email_address + "was already exist";
       return
+
     } else {
       // save users data into database
       var sql = "INSERT INTO Users SET ?";
@@ -42,14 +45,14 @@ router.post("/register", function (req, res, next) {
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'priyanka.g@canopas.com@gmail.com',
-          pass: 'priya9428442396'
+          user: 'priyagourrocks@gmail.com',
+          pass: 'Priya19428442396'
         }
       });
 
         var mailOptions = {
-        from: 'priyanka.g@canopas.com@gmail.com',
-        to: inputData.email,
+        from: 'priyagourrocks@gmail.com',
+        to: 'gourpriya20@gmail.com',
         subject: 'Sending Email using Nodejs',
         text: 'That was easy!'
       };
