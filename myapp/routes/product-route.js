@@ -14,33 +14,24 @@ router.get('/product-list', function(req, res, next) {
 //rest api to create a new record into mysql database
 
 router.get("/product-add", function (req, res, next) {
-  res.render("/product/create");
-});
-
-router.post('/product-add', function (req, res) {
-    
-  var product_name = req.body.product_name;
-  connection.query('INSERT INTO Product SET ?', product_name, function (err,rows) {
-   if (err) {
-     req.flash("error".err);
-     res.render('/product/create');
-   }else{
-     res.flash("sucess","Product successfully added");
-     res.redirect('/product/product');
-   }
-         
- });
+  res.render("product/create");
 });
 
 
-//rest api to delete record from mysql database
-// router.delete('/product-delete', function (req, res) {
-//     console.log(req.body);
-//     connection.query('DELETE FROM `Product` WHERE `pid`=?', [req.body.id], function (error, results, fields) {
-//        if (error) throw error;
-//        res.end('Product has been deleted!');
-//      });
-//  });
+router.post('/product-add', function(req, res, next) {
+  var product_name= req.body.pname;
+ 
+   sql = `INSERT INTO Product (product_name) VALUES ("${product_name}")`;
+  db.query(sql, function(err, result) {
+    if (err) throw err;
+    console.log('record inserted');
+    var msg = "Product inserted Successfully";
+  
+    res.redirect('/product/product',{ alertMsg: msg });
+  });
+});
+
+
 
 
 module.exports = router;

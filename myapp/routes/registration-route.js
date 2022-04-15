@@ -2,7 +2,6 @@ var express = require("express");
 var nodemailer = require("nodemailer");
 var router = express.Router();
 var db = require("../database/config.js");
-var nodemailer = require('nodemailer');
 
 
 // to display registration form
