@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Product</title>
+</head>
+<body>
+    <%- include('../adminheader.ejs') %>
+    <div class="container mt-4">
+      <div class="card">
+        <div class="card-body">
+          <% if (messages.success) { %>
+              <p class="alert alert-success m2-4 mb-2"><%- messages.success %></p>
+          <% } %>          
+ 
+          <form action="product-add" method="POST">
+            <div class="form-group">
+              <label for="firstName">Product Name</label>
+              <input type="text" class="form-control col-lg-9" id="f_name" aria-describedby="emailHelp" placeholder="Enter first name" name="pname">
+            </div>
+           
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+  </div>
+
+</body>
+</html>

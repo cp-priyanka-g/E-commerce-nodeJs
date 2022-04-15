@@ -7,7 +7,8 @@
     <title>Product</title>
 </head>
 <body>
-    <%- include('adminheader.ejs') %>
+    <%- include('../adminheader.ejs') %>
+  
 
     <table border="1">
         <tr>
@@ -27,8 +28,8 @@
             <td><%=i; %></td>
             <td><%=data.product_name  %></td>
         
-            <td><a href="/product/edit/<%=data.id%>">Edit</a></td>
-            <td><a href="/product/delete/<%=data.id%>">Delete</a></td>
+            <td><a href="/product-create/<%=data.pid%>">Edit</a></td>
+            <td><a href="/product-delete/<%=data.pid%>">Delete</a></td>
         </tr>
         <%  i++; }) %>
         <% } else{ %>
