@@ -9,42 +9,7 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h2>Welcome to Ecommerce-Shopping Site</h2>
-        <p><b>Login Email</b> - <%=email %></p>
-
-        <div class="navbar">
-          <a href="/dashboard">Home</a>
-          <div class="subnav">
-            <button class="subnavbtn">Men<i class="fa fa-caret-down"></i></button>
-            <div class="subnav-content">
-              <a href="#company">TopWear</a>
-              <a href="#team">Bottomwear</a>
-              <a href="#careers">Sports</a>
-            </div>
-          </div> 
-          <div class="subnav">
-            <button class="subnavbtn">Women<i class="fa fa-caret-down"></i></button>
-            <div class="subnav-content">
-               <a href="#deliver">Indian</a>
-              <a href="#package">Western</a>
-              <a href="#express">Sports</a>
-            </div>
-          </div> 
-          <div class="subnav">
-            <button class="subnavbtn">Kids<i class="fa fa-caret-down"></i></button>
-            <div class="subnav-content">
-              <a href="#link1">Boy</a>
-              <a href="#link2">Girl</a>
-              <a href="#link3">infant</a>
-             
-            </div>
-          </div>
-          <a class="nav-link" href="#">Search Product</a>
-          <a class="nav-link" href="3">Favourite</a>
-          <a class="nav-link" href="/logout">Logout</a>
-        </div>
-        
-                    
+  <%- include('header.ejs') %>                   
            
       
 </body>
