@@ -6,6 +6,11 @@ router.use(flash());
 var products= require('../controller/all_product.js');
 const {response}=require("express");
 
+// router.get("/product-list", function (req, res, next) {
+//   res.render("product/product");
+// });
+
+
 router.get('/product-list', function(req, res, next) {
     var sql='SELECT * FROM Product';
 
@@ -36,30 +41,23 @@ router.post('/product-add', function(req, res, next) {
 });
 
 //product delete
-router.get("/product-delete/:id?",function(req,response,next){
-  products.Delete(req,response);
-  });
+// router.get("/product-delete/:id?",function(req,response,next){
+//   products.Delete(req,response);
+//   });
 
 // router.get("/product-delete/:id", function (req, res, next) {
 //   res.render("product/product");
 // });
 
-
-// router.post('/product-delete/:id', function(req, res, next) {
-//   var product_id= req.params.id;
-//  db.query("DELETE fro Product WHERE pid="+product_id,function(err,rows){
-//    if(err){
-//      req.flash("error",err);
-//     //  res.redirect('product/product');
-//    }else{
-//      req.flash("success","product deleted successfully! pid="+id);
-//      console.log("Deleted Successfully")
-//     //  res.redirect('product/product');
-//    }
-//  });
-// });
-
-
+router.get('/product-delete/:id', (req, res) => {
+  db.query('DELETE FROM Product WHERE pid = ?', [req.params.id], (err, rows, fields) => {
+  if (!err)
+  res.send('Product Record deleted successfully.');
+  //console.log("Deleted record");
+  else
+  console.log(err);
+  })
+  });
 
 
 module.exports = router;
