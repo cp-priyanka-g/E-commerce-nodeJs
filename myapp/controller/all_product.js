@@ -14,17 +14,27 @@ const db= require("../database/config");
 // }
 // module.exports={Product}
 
-function Delete(req,response){
-var product_id= req.params.id;
- db.query("DELETE fro Product WHERE pid="+product_id,function(err,rows){
-   if(err){
-     req.flash("error",err);
-    //  res.redirect('product/product');
-   }else{
-     req.flash("success","product deleted successfully! pid="+id);
-     console.log("Deleted Successfully")
-     response.redirect('admindashboard/');
-   }
- });
-}
-module.exports=Delete;
+// function Delete(req,response){
+// var product_id= req.params.id;
+//  db.query("DELETE fro Product WHERE pid="+product_id,function(err,rows){
+//    if(err){
+//      req.flash("error",err);
+//     //  res.redirect('product/product');
+//    }else{
+//      req.flash("success","product deleted successfully! pid="+id);
+//      console.log("Deleted Successfully")
+//      response.redirect('admindashboard/');
+//    }
+//  });
+// }
+
+
+// router.get('/product-list', function(req, res, next) {
+//     var sql='SELECT * FROM Product';
+
+//     db.query(sql, function (err, data, fields) {
+//     if (err) throw err;
+//     res.render('product/product', { userData: data});
+//   });
+// });
+// module.exports=Delete;

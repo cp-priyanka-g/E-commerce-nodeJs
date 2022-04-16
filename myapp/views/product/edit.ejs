@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+</head>
+<body>
+     <%- include('../adminheader.ejs') %> 
+  
+    <form action="/product-update/:id" method="post">
+        <div class="form-group">
+    
+        <div class="form-group">
+          <label for="exampleInputPassword1">Product Name</label>
+          <input type="text" class="form-control" name="pname" id="exampleInputPassword1" placeholder="name">
+        </div>
+        <button type="submit" class="btn btn-info">Update</button>
+      </form>
+</body>
+</html>
