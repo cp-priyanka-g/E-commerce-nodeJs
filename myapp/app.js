@@ -11,6 +11,7 @@ var admindashboardRouter = require("./routes/admindashboard-route.js");
 var logoutRouter = require("./routes/logout-route.js");
 var productRouter = require("./routes/product-route.js");
 var categoryRouter = require("./routes/category-route.js");
+var subcategoryRouter = require("./routes/subcategory-route.js");
 
 const app = express();
 app.use(
@@ -36,6 +37,7 @@ app.use("/", admindashboardRouter);
 app.use("/", logoutRouter);
 app.use("/", productRouter);
 app.use("/", categoryRouter);
+app.use("/", subcategoryRouter);
 
 
 

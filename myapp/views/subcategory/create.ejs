@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Product</title>
+</head>
+<body>
+    <%- include('../adminheader.ejs') %>
+    <div class="container mt-4">
+      <div class="card">
+        <div class="card-body">
+             
+          
+          <form action="subcategory-add" method="POST">
+            <div class="form-group">
+              <label for="firstName">SubCategory Name</label>
+              <input type="text" class="form-control col-lg-9" id="f_name" aria-describedby="emailHelp" placeholder="Enter SubCategory Name" name="Description">
+              <label for="firstName">Price</label>
+              <input type="text" class="form-control col-lg-9" id="f_name" aria-describedby="emailHelp" placeholder="Enter ProductID" name="price">
+              <label for="firstName">Category ID</label>
+              <input type="text" class="form-control col-lg-9" id="f_name" aria-describedby="emailHelp" placeholder="Enter CategoryID" name="cid">
+            
+              <label for="firstName">Product ID</label>
+              <input type="text" class="form-control col-lg-9" id="f_name" aria-describedby="emailHelp" placeholder="Enter ProductID" name="pid">
+            </div>
+           
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+  </div>
+
+</body>
+</html>
