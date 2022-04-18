@@ -10,6 +10,7 @@ var dashboardRouter = require("./routes/dashboard-route.js");
 var admindashboardRouter = require("./routes/admindashboard-route.js");
 var logoutRouter = require("./routes/logout-route.js");
 var productRouter = require("./routes/product-route.js");
+var categoryRouter = require("./routes/category-route.js");
 
 const app = express();
 app.use(
@@ -34,6 +35,7 @@ app.use("/", dashboardRouter);
 app.use("/", admindashboardRouter);
 app.use("/", logoutRouter);
 app.use("/", productRouter);
+app.use("/", categoryRouter);
 
 
 
