@@ -12,9 +12,9 @@ router.get("/product-list",function(req,response,next){
   products.Product(req,response);
   });
 
-// router.get("/product-add", function (req, res, next) {
-//   products.Create(req,res);
-// });
+router.get("/product-add", function (req, res, next) {
+  res.render("product/create");
+});
 
 router.post("/product-add", function (req, res, next) {
   products.Create(req,res);
