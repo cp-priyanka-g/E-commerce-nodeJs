@@ -7,46 +7,51 @@ var products= require('../controller/all_product.js');
 const {response}=require("express");
 
 
-router.get('/product-list', function(req, res, next) {
-    var sql='SELECT * FROM Product';
+// router.get('/product-list', function(req, res, next) {
+//     var sql='SELECT * FROM Product';
 
-    db.query(sql, function (err, data, fields) {
-    if (err) throw err;
-    res.render('product/product', { userData: data});
+//     db.query(sql, function (err, data, fields) {
+//     if (err) throw err;
+//     res.render('product/product', { userData: data});
+//   });
+// });
+router.get("/product-list",function(req,response,next){
+  products.Product(req,response);
   });
-});
-
 
 //rest api to create a new record into mysql database
 
 router.get("/product-add", function (req, res, next) {
-  res.render("product/create");
+  products.Create(req,response);
 });
 
-router.post('/product-add', function(req, res, next) {
-  var product_name= req.body.pname;
+// router.post('/product-add', function(req, res, next) {
+//   var product_name= req.body.pname;
  
-   sql = `INSERT INTO Product (product_name) VALUES ("${product_name}")`;
-  db.query(sql, function(err, result) {
-    if (err) throw err;
-    console.log('record inserted');  
-    res.render('product/product')
+//    sql = `INSERT INTO Product (product_name) VALUES ("${product_name}")`;
+//   db.query(sql, function(err, result) {
+//     if (err) throw err;
+//     console.log('record inserted');  
+//     res.render('product/product')
 
-  });
+//   });
+// });
+router.get("/product-delete/:id", function (req, res, next) {
+  products.Delete(req,response);
 });
 
 
-router.get('/product-delete/:id', (req, res) => {
-  db.query('DELETE FROM Product WHERE pid = ?', [req.params.id], (err, rows, fields) => {
-  if (!err){
-    res.send('Product Record deleted successfully.');
-    console.log("Deleted record");
+// router.get('/product-delete/:id', (req, res) => {
+//   db.query('DELETE FROM Product WHERE pid = ?', [req.params.id], (err, rows, fields) => {
+//   if (!err){
+//     res.send('Product Record deleted successfully.');
+//     console.log("Deleted record");
     
-  }
-  else
-  console.log(err);
-  })
-  });
+//   }
+//   else
+//   console.log(err);
+//   })
+//   });
 
   
 // SHOW EDIT USER FORM

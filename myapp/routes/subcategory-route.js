@@ -10,7 +10,7 @@ router.get('/subcategory-list', function(req, res, next) {
     var sql='SELECT * FROM SubCategory';
     db.query(sql, function (err, data, fields) {
     if (err) throw err;
-    res.render('subcategory/subcategory', { userData: data});
+    res.render('subcategory/subcategory',{ userData: data});
   });
 });
 

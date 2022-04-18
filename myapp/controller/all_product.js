@@ -1,40 +1,37 @@
 const db= require("../database/config");
 
-// function Product(req,response){
+function Product(req,res){
+         var sql='SELECT * FROM Product';
+        
+         db.query(sql, function (err, data, fields) {
+         if (err) throw err;
+         res.render('product/product', { userData: data});
+       });
+
+}
+function Create(req, res, next) {
+    var product_name= req.body.pname;
    
-//     conn.query("SELECT *FROM Product", function(err,rows){
-//         console.log(rows)
-//         if(err){
-//             req.flash("error",err);
-//             response.render("product",{data:""});
-//             }else{
-//                 response.render("product",{data:rows});
-//             }
-//     });
-// }
-// module.exports={Product}
-
-// function Delete(req,response){
-// var product_id= req.params.id;
-//  db.query("DELETE fro Product WHERE pid="+product_id,function(err,rows){
-//    if(err){
-//      req.flash("error",err);
-//     //  res.redirect('product/product');
-//    }else{
-//      req.flash("success","product deleted successfully! pid="+id);
-//      console.log("Deleted Successfully")
-//      response.redirect('admindashboard/');
-//    }
-//  });
-// }
+     sql = `INSERT INTO Product (product_name) VALUES ("${product_name}")`;
+    db.query(sql, function(err, result) {
+      if (err) throw err;
+      console.log('record inserted');  
+      res.render('./product/product')
+  
+    });
+  }
+  
+  function Delete(req, res) {
+    db.query('DELETE FROM Product WHERE pid = ?', [req.params.id], (err, rows, fields) => {
+    if (!err){
+      res.send('Product Record deleted successfully.');
+      console.log("Deleted record");
+      
+    }
+    else
+    console.log(err);
+    })
+    }
+module.exports={Product,Create,Delete}
 
 
-// router.get('/product-list', function(req, res, next) {
-//     var sql='SELECT * FROM Product';
-
-//     db.query(sql, function (err, data, fields) {
-//     if (err) throw err;
-//     res.render('product/product', { userData: data});
-//   });
-// });
-// module.exports=Delete;
