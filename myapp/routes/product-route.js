@@ -6,6 +6,7 @@ router.use(flash());
 var products= require('../controller/all_product.js');
 const {response}=require("express");
 
+
 router.get('/product-list', function(req, res, next) {
     var sql='SELECT * FROM Product';
 
@@ -70,7 +71,7 @@ if (err) throw err;
 console.log(data.affectedRows + " record(s) updated");
 });
 //res.redirect('product/product');
+res.send('Product updated successfully.');
 });
 
- 
 module.exports = router;
