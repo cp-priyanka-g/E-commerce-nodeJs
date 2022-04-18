@@ -47,58 +47,30 @@ router.get('/product-delete/:id', (req, res) => {
   })
   });
 
-  // router.get("/product-edit/:id", function (req, res, next) {
-  //   res.render("product/edit");
-  // });
   
 // SHOW EDIT USER FORM
-router.get('/product-edit/:id', function(req, res, next){
-  db.query('SELECT * FROM Product WHERE pid = ' + req.params.id, function(err, rows, fields) {
-  if(err) throw err
-  // if user not found
-  if (rows.length <= 0) {
-  req.flash('error', 'Customers not found with id = ' + req.params.id)
-  res.redirect('/product/edit')
-  }
-  else {
-
-  res.render('product/edit', {
-  title: 'Edit Product', 
-  pname: rows[0].product_name,
-                  
-  })
-  }            
-  })
-  })
+router.get('/product-edit/:id', function(req, res, next) {
+  var productId= req.params.id;
+  var sql=`SELECT * FROM Product WHERE pid=${productId}`;
+  db.query(sql, function (err, data) {
+    if (err) throw err;
+   
+    res.render('product/edit', {editData: data[0]});
+  });
+});
 
   //Router to UPDATE a Product detail
-router.post('/product-update/:id', (req, res) => {
-  let id=req.params.id;
-  let product_name=req.body.pname;
-  let errors=false;
-  if(product_name.length===0){
-    errors=true;
-    req.flash("error","Please enter Product name");
-    response.render("product/edit",{
-      id:req.params.id,
-      product_name:pname
-    });
-  }
-  if(!errors){
-    var form_data={
-      id:id,
-      product_name:product_name,
-    };
-    db.query("UPDATE Product SET ? where pid="+id ,form_data,function(err,row){
-      if(err){
-        console.log("error in update")
-      }else{
-        console.log("updated successfully")
-      }
-    })
-  }
 
-  });
+router.post('/product-edit/:id', function(req, res, next) {
+var id= req.params.id;
+var updateData=req.body;
+var sql = `UPDATE Product SET ? WHERE pid= ?`;
+db.query(sql, [updateData, id], function (err, data) {
+if (err) throw err;
+console.log(data.affectedRows + " record(s) updated");
+});
+//res.redirect('product/product');
+});
 
-
+ 
 module.exports = router;
