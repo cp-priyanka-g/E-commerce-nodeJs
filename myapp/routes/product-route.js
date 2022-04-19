@@ -11,6 +11,9 @@ const {response}=require("express");
 router.get("/product-list",function(req,response,next){
   products.Product(req,response);
   });
+  router.get("/product-show",function(req,response,next){
+    products.Productshow(req,response);
+    });
 
 router.get("/product-add", function (req, res, next) {
   res.render("product/create");

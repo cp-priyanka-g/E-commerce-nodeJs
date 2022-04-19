@@ -7,6 +7,13 @@ function Category (req, res, next) {
     res.render('category/category', { userData: data});
   });
 }
+function Categoryshow(req, res, next) {
+  var sql='SELECT * FROM Category';
+  db.query(sql, function (err, data, fields) {
+  if (err) throw err;
+  res.render('category', { userData: data});
+});
+}
 
 function Create(req, res, next) {
     var category_name= req.body.cname;
@@ -57,7 +64,7 @@ var id= req.params.id;
 res.send('Product updated successfully.');
 }
 
-module.exports={Category,
+module.exports={Category,Categoryshow,
     Create,
     Delete,
     Edit,

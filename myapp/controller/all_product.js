@@ -9,6 +9,15 @@ function Product(req,res){
        });
 
 }
+function Productshow(req,res){
+  var sql='SELECT * FROM Product';
+ 
+  db.query(sql, function (err, data, fields) {
+  if (err) throw err;
+  res.render('product', { userData: data});
+});
+
+}
 function Create(req, res, next) {
     var product_name= req.body.pname;
    
@@ -55,7 +64,7 @@ function Create(req, res, next) {
     res.send('Product updated successfully.');
     }
 
-module.exports={Product,
+module.exports={Product,Productshow,
                 Create,
                 Delete,
                 Edit,

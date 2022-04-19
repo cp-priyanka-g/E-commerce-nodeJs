@@ -10,6 +10,10 @@ router.get("/category-list",function(req,response,next){
     category.Category(req,response);
     });
   
+router.get("/category-show",function(req,response,next){
+      category.Categoryshow(req,response);
+      });
+
  router.get("/category-add", function (req, res, next) {
         res.render("category/create");
       });
