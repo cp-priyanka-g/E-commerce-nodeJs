@@ -12,7 +12,7 @@ router.get("/favourite-list",function(req,response,next){
       
 
 router.get("/favourite-add/:id", function (req, res, next) {
-        res.render("/subcategory");
+        res.render('subcategory');
       });
       
 
@@ -21,7 +21,7 @@ router.post("/favourite-add/:id", function (req, res, next) {
       });
       
  
-  router.get("/favourite-delete/:id", function (req, res, next) {
+  router.get("/favourite-delete/:id", function (req, res) {
     favourite.Delete(req,response);
   });
 //rest api to create a new record into mysql database

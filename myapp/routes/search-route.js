@@ -8,12 +8,21 @@ const {response}=require("express");
 
 //rest api to create a new record into mysql database
 
-router.get("/search-category/:id",function(req,response,next){
+router.get("/search-category",function(req,response,next){
   search.subcategorybyid(req,response);
   });
 
-  router.get("/search-subcategory/:id",function(req,response,next){
+  router.get("/search-subcategory",function(req,response,next){
     search.categoryproductbyid(req,response);
     });
 
+  router.get("/search-byprice",function(req,response,next){
+      search.searchproductbyprice(req,response);
+      });
+
+  router.get("/search-byname",function(req,response,next){
+        search.searchproductbyname(req,response);
+        });
+
+    
 module.exports = router;

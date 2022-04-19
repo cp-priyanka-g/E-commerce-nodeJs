@@ -64,7 +64,8 @@ function Create(req, res, next) {
     res.send('Product updated successfully.');
     }
 
-module.exports={Product,Productshow,
+module.exports={Product,
+                Productshow,
                 Create,
                 Delete,
                 Edit,

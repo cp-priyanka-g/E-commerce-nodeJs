@@ -12,6 +12,9 @@ var logoutRouter = require("./routes/logout-route.js");
 var productRouter = require("./routes/product-route.js");
 var categoryRouter = require("./routes/category-route.js");
 var subcategoryRouter = require("./routes/subcategory-route.js");
+var searchRouter = require("./routes/search-route.js");
+var favouriteRouter = require("./routes/favourite-route.js");
+var mailRouter = require("./routes/mail-route.js");
 
 const app = express();
 app.use(
@@ -38,7 +41,9 @@ app.use("/", logoutRouter);
 app.use("/", productRouter);
 app.use("/", categoryRouter);
 app.use("/", subcategoryRouter);
-
+app.use("/", searchRouter);
+app.use("/", favouriteRouter);
+app.use("/", mailRouter);
 
 
 app.listen(3000, () => {

@@ -28,7 +28,7 @@ router.post("/register", function (req, res, next) {
     if (err) throw err;
 
     if (data.length>0) {
-              
+          
       var msg = inputData.email_address + "was already exist";
       return
 
@@ -44,14 +44,14 @@ router.post("/register", function (req, res, next) {
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'priyagourrocks@gmail.com',
-          pass: 'priya19428442396'
+          user: '',
+          pass: 'smart@123'
         }
       });
 
         var mailOptions = {
-        from: 'priyagourrocks@gmail.com',
-        to: 'gourpriya20@gmail.com',
+        from: 'smarttraveller57@gmail.com',
+        to: email,
         subject: 'Sending Email using Nodejs',
         text: 'That was easy!'
       };
