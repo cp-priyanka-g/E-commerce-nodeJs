@@ -1,16 +1,18 @@
 const db= require("../database/config");
+const session = require("express-session");
 
-function Create(req,response){
+
+function Create(req,res){
    
-    let prod_id=req.params.id;
-    var id=1;
-  
-     sql = `INSERT INTO Favourite (sid,id) VALUES ("${prod_id}","${id}")`;
+    let sid=req.params.id;
+     id=2;
+     sql = `INSERT INTO Favourite (sid,id) VALUES ("${sid}","${id}")`;
      db.query(sql, function(err, result) {
       if (err) throw err;
       console.log('record inserted');
       //var msg = "category inserted Successfully";
-      res.redirect('favourite/wishlist');
+      console.log("Add to favourite Product");
+      res.send('Added to favourite Product');
     
     });
 }
@@ -21,26 +23,31 @@ function Create(req,response){
     db.query("DELETE FROM Favourite where fid="+ favourites_id, function(err,rows){
     if(err){
     req.flash("error",err);
-    response.render("favourite/wishlist");
+    response.render("product");
     }else {
-    console.log("SUccesfully delete");
-    response.render("favourite/wishlist");
+    console.log("Unfavourite Product");
+    response.send('Unfavourite Product');
+    response.render("subcategory");
     }
     });
     }
-    
-    function wishlist (req,response){
-    // var user_id=req.session.user_id;
-    // if(user_id!=null){
-        
-    db.query("SELECT *FROM Favourite ", function (err,data){
+
+       function wishlist(req,res){
+        var sql='SELECT * FROM Favourite ';
+       
+        db.query(sql, function (err, data, fields) {
         if (err) throw err;
-            response.render('favourite/wishlist', { userData: data[0]});
-          });
- 
-    console.log(userData);
-    }
-    // }else{
-    // response.send("please login ");
-    // }
-    module.exports={Create,wishlist,Delete}; 
+        res.render('favourite/wishlist', { userData: data});
+      });
+
+}
+function Add(req, res, next) {
+    var sid= req.params.id;
+    var sql=`SELECT * FROM SubCategory WHERE sid=${sid}`;
+    db.query(sql, function (err, data) {
+      if (err) throw err;
+      res.render('favourite/create', {editData: data[0]});
+    });
+  }
+   
+    module.exports={Create,wishlist,Delete,Add}; 

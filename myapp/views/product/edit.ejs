@@ -9,9 +9,7 @@
 <body>
      <!-- <%- include('../adminheader.ejs') %>  -->
      <div>
-     
-
-      <form action="<%=(typeof editData!='undefined')?'/product-edit/'+editData.pid:'/product/product'%>" method="POST">
+          <form action="<%=(typeof editData!='undefined')?'/product-edit/'+editData.pid:'/product/product'%>" method="POST">
             <label>Product Name</label>
             <input type="text" placeholder="Product Name" name="product_name" required value="<%=(typeof editData!='undefined')? editData.product_name:''%>">
           

@@ -1,13 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var db  = require('../database/config.js');
+const db= require("../database/config");
 
-/* GET users listing. */
-router.get('/login', function(req, res, next) {
-  res.render('login-form');
-});
-
-router.post('/login', function(req, res){
+ function Login (req, res){
     var emailAddress = req.body.email_address;
     var password = req.body.password;
     var sql='SELECT * FROM Users WHERE email=? AND password =?';
@@ -25,6 +18,7 @@ router.post('/login', function(req, res){
         }else{
             res.render('login-form',{alertMsg:"Your Email Address or password is wrong"});
         }
-    })
-})
-module.exports = router;
+    });
+}
+
+module.exports={Login}

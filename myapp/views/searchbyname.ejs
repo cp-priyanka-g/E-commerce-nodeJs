@@ -14,7 +14,7 @@
      
         <div class="form-group mx-sm-3 mb-2">
           <label for="inputPassword2" class="sr-only">Product name</label>
-          <input type="text" class="form-control" id="inputPassword2" name="pname" placeholder="Product name">
+          <input type="text" class="form-control" id="inputPassword2" name="Description" placeholder="Product name">
         </div>
         <button type="submit" class="btn btn-primary mb-2">Search</button>
       </form>
@@ -22,8 +22,8 @@
         <tr>
             <th>S.N</th>
             <th>Product</th>
-            <th>Update</th>
-            <th>Delete</th>
+            <th>Price</th>
+           
            
         </tr>
         
@@ -35,6 +35,7 @@
         <tr>
             <td><%=i; %></td>
             <td><%=data.Description  %></td>
+            <td><%=data.price  %></td>
              </tr>
         <%  i++; }) %>
         <% } else{ %>

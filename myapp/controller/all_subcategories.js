@@ -26,7 +26,6 @@ function SubCategoryShow(req, res) {
      db.query(sql, function(err, result) {
       if (err) throw err;
       console.log('record inserted');
-      //var msg = "category inserted Successfully";
       res.redirect('subcategory/subcategory');
     
     });

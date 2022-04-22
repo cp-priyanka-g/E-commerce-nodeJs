@@ -2,49 +2,51 @@ const db= require("../database/config");
 
 
 function categoryproductbyid(req,response){
-      db.query("SELECT category.category_name AS Category, product.product_name AS product FROM Product  ON category.pid = products.id" ,function(err){
+      db.query("SELECT c.category_name, p.product_name FROM Category as c JOIN Product as p  ON c.pid = p.pid" ,function(err,rows){
         if(err){
             req.flash("Error",err);
-            response.render("product",{data:""});
+            response.render("getcategory",{userData:""});
             }else{
-            response.render("product",{data:rows});
+            response.render("getcategory",{ userData:rows});
             }
     });
     }
    
 
-    function subcategorybyid(req, response){
-        db.query("SELECT SubCategory.Description AS SubCategory, product.product_name AS product FROM Product  ON SubCategory.pid = products.id"+subcatid,function(err,rows){
+    function subcategorybyid(req, response){  
+        db.query("SELECT s.Description,s.price,s.cid,p.product_name from SubCategory as s JOIN Product as p ON s.pid = p.pid",function(err,rows){
         if(err){
         req.flash("Error",err);
-        response.render("product",{data:""});
+        response.render("getSubcategory",{userData:""});
         }else{
-        response.render("product",{data:rows});
+        response.render("getSubcategory",{userData:rows});
         }
         });
         }
 
-        function searchproductbyprice(req,response){
+        function searchproductbyprice(req,res,next){
             var startprice=req.query.startprice;
             var endprice=req.query.endprice;
-            db.query("SELECT  *from SubCategory where price >= ? AND price<=?",[startprice,endprice],function(err,rows){
+           
+            db.query("SELECT  *from SubCategory where price >= ? AND price <=?",[startprice,endprice],function(err,rows){
             if(err){
             req.flash("error",err);
-            res.render("searchbyprice",{data:""});
+            res.render("searchprice",{data:""});
             }else{
             console.log(rows);
-            res.render("searchbyprice",{data:rows});
+            res.render("searchprice",{ data:rows});
             }
             });
             }
             
-            function searchproductbyname(req,response){
-            var textbox1=req.body.pname;
+            function searchproductbyname(req,res){
+            var Description=req.body.Description;
             
-            db.query("SELECT  *from SubCategory where Description like ?",textbox1 ,function(err,rows){
+            db.query("SELECT  *from SubCategory where Description like ?",Description,function(err,rows){
             if(err){
+            
             req.flash("error",err);
-            res.render("searchbyname",{data:" "});
+            //res.render("searchbyname",{data:" "});
             }else{
             console.log(rows);
             res.render("searchbyname",{data:rows});
@@ -52,4 +54,7 @@ function categoryproductbyid(req,response){
             });
             }
             
-module.exports={ subcategorybyid,categoryproductbyid,searchproductbyprice,searchproductbyname}
+module.exports={ subcategorybyid,
+                 categoryproductbyid,
+                 searchproductbyprice,
+                 searchproductbyname}
