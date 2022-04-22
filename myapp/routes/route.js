@@ -10,6 +10,7 @@ var login=require('../controller/login.js');
 var register=require('../controller/register.js');
 var search= require('../controller/search.js');
 var subcategory=require('../controller/all_subcategories.js');
+const sendMail = require('../controller/mail');
 
 // Registration Route
 // to display registration form
@@ -193,5 +194,21 @@ router.post("/subcategory-edit/:id", function (req, res, next) {
   products.Update(req,res);
 });
 
-    
+//CONTACT EMAIL BY USER
+
+router.post('/email', (req, res) => {
+
+  const { name, subject, email, text } = req.body;
+  console.log('Data: ', req.body);
+
+  sendMail(name, email, subject, text, function(err, data) {
+      if (err) {
+          res.status(500).json({ message: 'Internal Error' });
+      } else {
+          res.status({ message: 'Email sent!!!' });
+      }
+  });
+  
+});
+
 module.exports = router;
