@@ -10,7 +10,9 @@ var login=require('../controller/login.js');
 var register=require('../controller/register.js');
 var search= require('../controller/search.js');
 var subcategory=require('../controller/all_subcategories.js');
-const sendMail = require('../controller/mail');
+const sendMail = require('../controller/mail.js');
+var session=require("../middlewware/auth.js")
+
 
 // Registration Route
 // to display registration form
@@ -57,51 +59,51 @@ router.get("/logout", function (req, res) {
 });
 
 //Category Route
-router.get("/category-list",function(req,response,next){
+router.get("/category-list",session.Auth,function(req,response,next){
   category.Category(req,response);
   });
 
-router.get("/category-show",function(req,response,next){
+router.get("/category-show",session.Auth,function(req,response,next){
     category.Categoryshow(req,response);
     });
 
-router.get("/category-add", function (req, res, next) {
+router.get("/category-add",session.Auth, function (req, res, next) {
       res.render("category/create");
     });
     
-router.post("/category-add", function (req, res, next) {
+router.post("/category-add",session.Auth, function (req, res, next) {
   category.Create(req,res);
 });
 
-router.get("/category-delete/:id", function (req, res, next) {
+router.get("/category-delete/:id",session.Auth, function (req, res, next) {
   category.Delete(req,res);
 });
 
-router.get("/category-edit/:id", function (req, res, next) {
+router.get("/category-edit/:id",session.Auth, function (req, res, next) {
   category.Edit(req,res);
 });
 
-router.post("/category-edit/:id", function (req, res, next) {
+router.post("/category-edit/:id",session.Auth, function (req, res, next) {
   category.Update(req,res);
 });
 
 // Favourite Route
 
-  router.get("/favourite-list",function(req,response,next){
+  router.get("/favourite-list",session.Auth,function(req,response,next){
     favourite.wishlist(req,response);
     });
 
-router.get("/favourite-add/:id",function (req, res, next) {
+router.get("/favourite-add/:id",session.Auth,function (req, res, next) {
   favourite.Add(req,res);
     });
     
 
-router.post("/favourite-add/:id", function (req, res, next) {
+router.post("/favourite-add/:id",session.Auth, function (req, res, next) {
   favourite.Create(req,res);
     });
     
 
-router.get("/favourite-delete/:id", function (req, res) {
+router.get("/favourite-delete/:id",session.Auth, function (req, res) {
   favourite.Delete(req,res);
 });
 
@@ -114,83 +116,83 @@ router.post('/login', function(req, res, next) {
 });
 
 //PRODUCT ROUTE
-router.get("/product-list",function(req,response,next){
+router.get("/product-list",session.Auth,function(req,response,next){
   products.Product(req,response);
   });
-  router.get("/product-show",function(req,response,next){
+  router.get("/product-show",session.Auth,function(req,response,next){
     products.Productshow(req,response);
     });
 
-router.get("/product-add", function (req, res, next) {
+router.get("/product-add",session.Auth, function (req, res, next) {
   res.render("product/create");
 });
 
-router.post("/product-add", function (req, res, next) {
+router.post("/product-add",session.Auth, function (req, res, next) {
   products.Create(req,res);
 });
 
-router.get("/product-delete/:id", function (req, res, next) {
+router.get("/product-delete/:id",session.Auth, function (req, res, next) {
   products.Delete(req,res);
 });
 
-router.get("/product-edit/:id", function (req, res, next) {
+router.get("/product-edit/:id",session.Auth, function (req, res, next) {
   products.Edit(req,res);
 });
 
-router.post("/product-edit/:id", function (req, res, next) {
+router.post("/product-edit/:id",session.Auth, function (req, res, next) {
   products.Update(req,res);
 });
 
 //Search Route
 
-router.get("/search-subcategory",function(req,response,next){
+router.get("/search-subcategory",session.Auth,function(req,response,next){
   search.subcategorybyid(req,response);
   });
 
-  router.get("/search-category",function(req,response,next){
+  router.get("/search-category",session.Auth,function(req,response,next){
     search.categoryproductbyid(req,response);
     });
 
-  router.get("/search-byprice",function(req,response,next){
+  router.get("/search-byprice",session.Auth,function(req,response,next){
     response.render('searchprice')
       search.searchproductbyprice(req,response);
       });
 
-  router.get("/search-byname",function(req,response,next){
+  router.get("/search-byname",session.Auth,function(req,response,next){
     response.render('searchbyname')
         search.searchproductbyname(req,response);
         });
       
   // Subcategory Route
 
-router.get("/subcategory-list",function(req,response,next){
+router.get("/subcategory-list",session.Auth,function(req,response,next){
   subcategory.SubCategory(req,response);
   });
     
 
-router.get("/subcategory-show",function(req,response){
+router.get("/subcategory-show",session.Auth,function(req,response){
 subcategory.SubCategoryShow(req,response);
 });
 
-router.get("/subcategory-add", function (req, res, next) {
+router.get("/subcategory-add",session.Auth, function (req, res, next) {
       res.render("subcategory/create");
     });
     
 
-router.post("/subcategory-add", function (req, res, next) {
+router.post("/subcategory-add",session.Auth, function (req, res, next) {
   subcategory.Create(req,response);
     });
     
 
-router.get("/subcategory-delete/:id", function (req, res, next) {
+router.get("/subcategory-delete/:id",session.Auth, function (req, res, next) {
   subcategory.Delete(req,response);
 });
 
-router.get("/subcategory-edit/:id", function (req, res, next) {
+router.get("/subcategory-edit/:id",session.Auth, function (req, res, next) {
   products.Edit(req,res);
 });
 
-router.post("/subcategory-edit/:id", function (req, res, next) {
+router.post("/subcategory-edit/:id",session.Auth, function (req, res, next) {
   products.Update(req,res);
 });
 
