@@ -19,7 +19,7 @@ function Productshow(req, res) {
 function Create(req, res, next) {
   var product_name = req.body.pname;
 
-  sql = `INSERT INTO Product (product_name) VALUES ("${product_name}")`;
+  sql = `INSERT INTO Product (product_name,Description,price) VALUES ("${product_name}")`;
   db.query(sql, function (err, result) {
     if (err) throw err;
     console.log("record inserted");

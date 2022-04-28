@@ -16,7 +16,7 @@ function categoryproductbyid(req, response) {
 
 function subcategorybyid(req, response) {
   db.query(
-    "SELECT s.Description,s.price,s.cid,p.product_name from SubCategory as s JOIN Product as p ON s.pid = p.pid",
+    "SELECT p.product_name,p.price,s.name,s.cid from SubCategory as s JOIN Product as p ON s.pid = p.pid",
     function (err, rows) {
       if (err) {
         req.flash("Error", err);
@@ -33,7 +33,7 @@ function searchproductbyprice(req, res) {
   var endprice = req.query.endprice;
 
   db.query(
-    "SELECT  *from SubCategory where price >= ? AND price <=?",
+    "SELECT  *from Product where price >= ? AND price <=?",
     [startprice, endprice],
     function (err, rows) {
       if (err) {
@@ -48,18 +48,18 @@ function searchproductbyprice(req, res) {
 }
 
 function searchproductbyname(req, res) {
-  var Description = req.body.Description;
+  var name = req.body.name;
 
   db.query(
-    "SELECT  *from SubCategory where Description like ?",
-    Description,
+    "SELECT  *from Product where name like ?",
+    name,
     function (err, rows) {
       if (err) {
         req.flash("error", err);
-        //res.render("searchbyname",{data:" "});
+        res.render("searchname", { data: " " });
       } else {
         console.log(rows);
-        res.render("searchbyname", { data: rows });
+        res.render("searchname", { data: rows });
       }
     }
   );

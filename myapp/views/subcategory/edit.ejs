@@ -14,11 +14,8 @@
 
       <form action="<%=(typeof editData!='undefined')?'/subcategory-edit/'+editData.sid:'/'%>" method="POST">
             <label>SubCategory Name</label>
-            <input type="text" placeholder="Category Name" name="Description" required value="<%=(typeof editData!='undefined')? editData.Description:''%>">
+            <input type="text" placeholder="Category Name" name="name" required value="<%=(typeof editData!='undefined')? editData.name:''%>">
           
-            <label>Price</label>
-            <input type="text" placeholder="price " name="price" required value="<%=(typeof editData!='undefined')? editData.price:''%>">
-
             <label>Category ID</label>
             <input type="text" placeholder="Category id" name="cid" required value="<%=(typeof editData!='undefined')? editData.cid:''%>">
 

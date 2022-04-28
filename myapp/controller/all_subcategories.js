@@ -17,16 +17,15 @@ function SubCategoryShow(req, res) {
 }
 
 function Create(req, res, next) {
-  var Description = req.body.Description;
   var cid = req.body.cid;
   var pid = req.body.pid;
-  var price = req.body.price;
+  var name = req.body.name;
 
-  sql = `INSERT INTO SubCategory (Description,cid,pid,price) VALUES ("${Description}","${cid}","${pid}","${price}")`;
+  sql = `INSERT INTO SubCategory (name,cid,pid) VALUES ("${name}","${cid}","${pid}")`;
   db.query(sql, function (err, result) {
     if (err) throw err;
     console.log("record inserted");
-    res.redirect("subcategory/subcategory");
+    res.send("subcategory Inserted successfully");
   });
 }
 function Delete(req, res) {

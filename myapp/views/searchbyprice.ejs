@@ -10,14 +10,19 @@
 </head>
 <body>
     <%- include('header.ejs') %>  
-    <form class="form-inline" action="/search-byname" method="get">
      
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="inputPassword2" class="sr-only">Product name</label>
-          <input type="text" class="form-control" id="inputPassword2" name="name" placeholder="Product name">
-        </div>
-        <button type="submit" class="btn btn-primary mb-2">Search</button>
+    <form action="/search-byprice" method="get">
+        <div class="form-row">
+          <div class="col">
+            <input type="text" class="form-control" name="price1" placeholder="Lowest Price">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" name="price2" placeholder="highest Price">
+          </div>
+             </div>
+             <button type="submit" class="btn btn-primary mb-2">Search</button>
       </form>
       
+
 </body>
 </html>

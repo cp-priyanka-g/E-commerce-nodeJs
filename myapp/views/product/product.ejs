@@ -16,6 +16,8 @@
         <tr>
             <th>S.N</th>
             <th>Product</th>
+            <th>Description</th>
+            <th>Price</th>
             <th>Update</th>
             <th>Delete</th>
            
@@ -29,6 +31,8 @@
         <tr>
             <td><%=i; %></td>
             <td><%=data.product_name  %></td>
+            <td><%=data.Description  %></td>
+            <td><%=data.price  %></td>
         
             <td><a href="/product-edit/<%=data.pid%>">Edit</a></td>
             <td><a href="/product-delete/<%=data.pid%>">Delete</a></td>

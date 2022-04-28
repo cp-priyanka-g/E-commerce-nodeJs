@@ -13,7 +13,10 @@
       <table border="1">
         <tr>
             <th>S.N</th>
-            <th>Product</th>         
+            <th>Product</th>    
+            <th>Description</th>      
+            <th>Price</th> 
+            <th>favourite</th> 
         </tr>
          <%
         if(userData.length!=0){
@@ -23,6 +26,9 @@
         <tr>
             <td><%=i; %></td>
             <td><%=data.product_name  %></td>
+            <td><%=data.Description  %></td>
+            <td><%=data.price  %></td>
+            <td><a href="/favourite-add/<%=data.pid %>">ADD</a></td>
        </tr>
         <%  i++; }) %>
         <% } else{ %>

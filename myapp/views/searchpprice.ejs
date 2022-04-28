@@ -6,29 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Category</title>
+    <title>Search Product by Price</title>
 </head>
 <body>
-    <%- include('../header.ejs') %>
-  
-
-    <table border="1">
+    <%- include('header.ejs') %>  
+           <table border="1">
         <tr>
             <th>S.N</th>
-            <th>Product ID</th>
-            <th>DELETE</th>
+            <th>Product</th>
+            <th>Price</th>
+           
+           
         </tr>
         
         <%
-        if(userData.length!=0){
+        if(data.length!=0){
         var i=1;
-        userData.forEach(function(data){
+        data.forEach(function(data){
         %>
         <tr>
             <td><%=i; %></td>
-            <td><%=data.pid %></td>
-            <td><a href="/favourite-delete/<%=data.fid%>">Delete</a></td>
-        </tr>
+            <td><%=data.Description  %></td>
+            <td><%=data.price  %></td>
+            
+             </tr>
         <%  i++; }) %>
         <% } else{ %>
             <tr>
@@ -37,6 +38,5 @@
         <% } %>
     </table>
 
- 
 </body>
 </html>

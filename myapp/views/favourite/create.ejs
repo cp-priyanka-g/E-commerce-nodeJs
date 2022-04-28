@@ -10,9 +10,9 @@
 <body>
     <%- include('../header.ejs') %>
     <div>
-      <form action="<%=(typeof editData!='undefined')?'/favourite-add/'+editData.sid:'/favourite/wishlist'%>" method="POST">
-        <label>SubCategory ID</label>
-        <input type="text" placeholder="SubCategory Id" name="sid" required value="<%=(typeof editData!='undefined')? editData.sid:''%>">
+      <form action="<%=(typeof editData!='undefined')?'/favourite-add/'+editData.pid:'/favourite/wishlist'%>" method="POST">
+        <label>Product ID</label>
+        <input type="text" placeholder="Product Id" name="pid" required value="<%=(typeof editData!='undefined')? editData.pid:''%>">
         <button type="submit">Submit</button>
       </form>
   </div>

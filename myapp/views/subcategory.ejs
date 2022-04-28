@@ -15,10 +15,9 @@
         <tr>
             <th>S.N</th>
             <th>SubCategory Name</th>
-            <th>Price</th>
-            <th>CategoryID</th>
             <th>Product ID</th>
-            <th>Favourite</th>
+            <th>CategoryID</th>
+            
        
            
         </tr>
@@ -30,11 +29,11 @@
         %>
         <tr>
             <td><%=i; %></td>
-            <td><%=data.Description %></td>
-            <td><%=data.price%></td>
-            <td><%=data.cid%></td>
+            <td><%=data.name %></td>          
             <td><%=data.pid %></td>
-            <td><a href="/favourite-add/<%=data.sid%>">ADD</a></td>
+            <td><%=data.cid%></td>
+            
+            
         
         </tr>
         <%  i++; }) %>

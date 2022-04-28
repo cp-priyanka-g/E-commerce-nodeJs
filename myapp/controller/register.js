@@ -2,12 +2,13 @@ var express = require("express");
 var nodemailer = require("nodemailer");
 var router = express.Router();
 var db = require("../database/config.js");
+const { encrypt, decrypt } = require("../crypto");
 
 function Register(req, res) {
   inputData = {
     name: req.body.name,
     email: req.body.email,
-    password: req.body.password,
+    password: encrypt(req.body.password),
     user_type: "general",
   };
 
@@ -17,7 +18,10 @@ function Register(req, res) {
     if (err) throw err;
 
     if (data.length > 0) {
+      req.session.loggedinUser = true;
+      req.session.email = data[0].email;
       var msg = inputData.email_address + "was already exist";
+
       return;
     } else {
       // save users data into database
@@ -38,7 +42,7 @@ function Register(req, res) {
 
       var mailOptions = {
         from: "smarttraveller57@gmail.com",
-        to: email,
+        to: inputData.email,
         subject: "Sending Email using Nodejs",
         text: "That was easy!",
       };
@@ -51,7 +55,9 @@ function Register(req, res) {
         }
       });
     }
-    res.render("login-form", { alertMsg: msg });
+    req.session.emailAddress = inputData.email;
+    req.session.loggedinUser = true;
+    res.render("./dashboard", { email: req.session.emailAddress });
   });
 }
 
@@ -70,6 +76,8 @@ function AdminRegister(req, res) {
   db.query(sql, [inputData.email_address], function (err, data, fields) {
     if (err) throw err;
     if (data.length > 1) {
+      req.session.loggedinUser = true;
+      req.session.emailAddress = inputData.email;
       var msg = inputData.email_address + "was already exist";
     } else {
       // save users data into database
@@ -79,7 +87,8 @@ function AdminRegister(req, res) {
       });
       var msg = "Your are successfully registered";
     }
-    res.render("login-form", { alertMsg: msg });
+
+    res.render("./admindashboard", { email: req.session.emailAddress });
   });
 }
 

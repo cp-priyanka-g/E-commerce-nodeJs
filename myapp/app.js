@@ -5,7 +5,6 @@ const path = require("path");
 var connection = require("./database/config.js");
 var appRouter = require("./routes/route.js");
 
-
 const app = express();
 const oneDay = 1000 * 60 * 60 * 24;
 
@@ -26,7 +25,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.use("/",appRouter);
+app.use("/", appRouter);
 
 app.listen(3000, () => {
   console.log(`Server Started...listening on port 3000`);

@@ -2,9 +2,9 @@ const db = require("../database/config");
 const session = require("express-session");
 
 function Create(req, res) {
-  let sid = req.params.id;
-  id = 2;
-  sql = `INSERT INTO Favourite (sid,id) VALUES ("${sid}","${id}")`;
+  let pid = req.params.id;
+  var userid=req.session.userid;
+  sql = `INSERT INTO Favourite (pid,id) VALUES ("${pid}","${userid}")`;
   db.query(sql, function (err, result) {
     if (err) throw err;
     console.log("record inserted");
@@ -33,9 +33,10 @@ function Delete(req, response) {
 }
 
 function wishlist(req, res) {
-  var sql = "SELECT * FROM Favourite ";
+  var userid=req.session.userid;
+  var sql = "SELECT * FROM Favourite where id=?";
 
-  db.query(sql, function (err, data, fields) {
+  db.query(sql, userid,function (err, data, fields) {
     if (err) throw err;
     res.render("favourite/wishlist", { userData: data });
   });
