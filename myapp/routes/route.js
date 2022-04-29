@@ -160,8 +160,8 @@ router.get("/search-byprice", session.Auth, function (req, response, next) {
   
 });
 
-router.get("/search-byname", session.Auth, function (req, response, next) {
-   search.searchproductbyname(req, response);
+router.get("/search-byname", session.Auth, function (req, res, next) {
+   search.searchproductbyname(req, res);
 });
 
 // Subcategory Route

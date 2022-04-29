@@ -51,10 +51,12 @@ function searchproductbyprice(req, res) {
 }
 
 function searchproductbyname(req, res) { 
-  var product_name = req.query.product_name;
+  inputData = {
+   product_name:req.query.product_name,
+ };
   db.query(
     "SELECT  *from Product where name like ?",
-    product_name,
+    inputData.product_name,
     function (err, rows) {
       if (err) {
         req.flash("error", err);        

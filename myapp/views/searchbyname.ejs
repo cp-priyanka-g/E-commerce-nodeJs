@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Product</title>
+    <title>Search Product</title>
 </head>
 <body>
         <%- include('header.ejs') %>  
@@ -23,14 +23,14 @@
         <tr>
             <th>S.N</th>
             <th>Product</th>
-            <th>Price</th>          
+            <th>Price</th>
+                    
         </tr>
-         <%
+        <%
         if(data.length!=0){
         var i=1;
         data.forEach(function(data){
         %>
-
         <tr>
             <td><%=i; %></td>
             <td><%=data.Description  %></td>
@@ -40,10 +40,9 @@
         <%  i++; }) %>
         <% } else{ %>
             <tr>
-                <td colspan="7">Search Product By Name</td>
+                <td colspan="7">Search Product By Price</td>
             </tr>
         <% } %>
     </table>
-      
 </body>
 </html>
