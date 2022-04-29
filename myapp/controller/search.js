@@ -51,19 +51,21 @@ function searchproductbyprice(req, res) {
 }
 
 function searchproductbyname(req, res) { 
+  //res.render("searchbyname", { Userdata: ""});
   inputData = {
    product_name:req.query.product_name,
  };
+ console.log("Product name :",inputData.product_name)
   db.query(
     "SELECT  *from Product where name like ?",
     inputData.product_name,
     function (err, rows) {
       if (err) {
         req.flash("error", err);        
-        res.render("searchbyname", { data: err });
+        res.render("searchbyname", { Userdata: err });
       } else {
         console.log(rows);
-        res.render("searchbyname", { data: rows });
+        res.render("searchbyname", { Userdata: rows });
       }
     }
   );

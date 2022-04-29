@@ -6,17 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Search Product</title>
+    <title>Product</title>
 </head>
 <body>
-        <%- include('header.ejs') %>  
+    <%- include('header.ejs') %>  
      
     <form action="/search-byname" method="get">
         <div class="form-row">
           <div class="col">
-            <input type="text" class="form-control" name="product_name" placeholder="Product Name">
+            <input type="text" class="form-control" name="product_name" placeholder="Product name">
           </div>
-        </div>
+          
+             </div>
              <button type="submit" class="btn btn-primary mb-2">Search</button>
       </form>
       <table border="1">
@@ -24,12 +25,16 @@
             <th>S.N</th>
             <th>Product</th>
             <th>Price</th>
-                    
+           
+           
         </tr>
+        
         <%
-        if(data.length!=0){
+        if(Userdata.length!=0){
         var i=1;
-        data.forEach(function(data){
+        Userdata.forEach(function(data)
+        {
+            
         %>
         <tr>
             <td><%=i; %></td>
@@ -44,5 +49,6 @@
             </tr>
         <% } %>
     </table>
+
 </body>
 </html>

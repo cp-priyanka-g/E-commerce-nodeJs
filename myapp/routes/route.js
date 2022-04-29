@@ -179,7 +179,7 @@ router.get("/subcategory-add", session.Auth, session.isAdmin,function (req, res,
 });
 
 router.post("/subcategory-add", session.Auth,session.isAdmin, function (req, res, next) {
-  subcategory.Create(req, res);
+  subcategory.Create(req, res);``
 });
 
 router.get("/subcategory-delete/:id", session.Auth,session.isAdmin, function (req, res, next) {
