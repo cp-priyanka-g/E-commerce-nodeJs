@@ -16,6 +16,7 @@ function Productshow(req, res) {
     res.render("product", { userData: data });
   });
 }
+
 function Create(req, res, next) {
   var product_name = req.body.pname;
 

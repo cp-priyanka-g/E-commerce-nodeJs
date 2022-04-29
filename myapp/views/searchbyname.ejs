@@ -18,6 +18,32 @@
         </div>
         <button type="submit" class="btn btn-primary mb-2">Search</button>
       </form>
+      <table border="1">
+        <tr>
+            <th>S.N</th>
+            <th>Product</th>
+            <th>Description</th>
+            <th>Price</th>          
+        </tr>
+        
+        <%
+        if(data.length!=0){
+        var i=1;
+        data.forEach(function(data){
+        %>
+        <tr>
+            <td><%=i; %></td>
+            <td><%=data.product_name  %></td>
+            <td><%=data.Description  %></td>
+            <td><%=data.price  %></td>
+             </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">Search Product HERE</td>
+            </tr>
+        <% } %>
+    </table>
       
 </body>
 </html>

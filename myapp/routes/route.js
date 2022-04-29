@@ -120,27 +120,27 @@ router.get(
     products.Product(req, response);
   }
 );
-router.get("/product-show", session.Auth, function (req, response, next) {
+router.get("/product-show", session.Auth,session.isAdmin, function (req, response, next) {
   products.Productshow(req, response);
 });
 
-router.get("/product-add", session.Auth, function (req, res, next) {
+router.get("/product-add", session.Auth,session.isAdmin,function (req, res, next) {
   res.render("product/create");
 });
 
-router.post("/product-add", session.Auth, function (req, res, next) {
+router.post("/product-add", session.Auth,session.isAdmin,function (req, res, next) {
   products.Create(req, res);
 });
 
-router.get("/product-delete/:id", session.Auth, function (req, res, next) {
+router.get("/product-delete/:id", session.Auth,session.isAdmin, function (req, res, next) {
   products.Delete(req, res);
 });
 
-router.get("/product-edit/:id", session.Auth, function (req, res, next) {
+router.get("/product-edit/:id", session.Auth,session.isAdmin, function (req, res, next) {
   products.Edit(req, res);
 });
 
-router.post("/product-edit/:id", session.Auth, function (req, res, next) {
+router.post("/product-edit/:id", session.Auth,session.isAdmin, function (req, res, next) {
   products.Update(req, res);
 });
 
@@ -150,30 +150,31 @@ router.get("/search-subcategory", session.Auth, function (req, response, next) {
   search.subcategorybyid(req, response);
 });
 
-router.get("/search-category", session.Auth, function (req, response, next) {
+router.get("/search-category", session.Auth ,function (req, response, next) {
   search.categoryproductbyid(req, response);
 });
 
-router.get("/search-byprice", session.Auth, function (req, response, next) {
-  response.render("searchbyprice");
+// router.get("/search-byprice", session.Auth, function (req, response, next) {
+//   response.render("searchbyprice");
+// });
 
-});
-
 router.get("/search-byprice", session.Auth, function (req, response, next) {
+  response.render("searchbyprice",{data:""});
   search.searchproductbyprice(req, response);
 });
 
 router.get("/search-byname", session.Auth, function (req, response, next) {
-  response.render("searchbyname");
+ response.render("searchbyname",{data:""});
+  search.searchproductbyname(req, response);
 });
 
-// router.get("/search-byname", session.Auth, function (req, response, next) {
+// router.post("/search-byname", session.Auth, function (req, response, next) {
 //     search.searchproductbyname(req, response);
 // });
 
 // Subcategory Route
 
-router.get("/subcategory-list", session.Auth, function (req, response, next) {
+router.get("/subcategory-list", session.Auth, session.isAdmin,function (req, response, next) {
   subcategory.SubCategory(req, response);
 });
 
@@ -181,23 +182,23 @@ router.get("/subcategory-show", session.Auth, function (req, response) {
   subcategory.SubCategoryShow(req, response);
 });
 
-router.get("/subcategory-add", session.Auth, function (req, res, next) {
+router.get("/subcategory-add", session.Auth, session.isAdmin,function (req, res, next) {
   res.render("subcategory/create");
 });
 
-router.post("/subcategory-add", session.Auth, function (req, res, next) {
+router.post("/subcategory-add", session.Auth,session.isAdmin, function (req, res, next) {
   subcategory.Create(req, res);
 });
 
-router.get("/subcategory-delete/:id", session.Auth, function (req, res, next) {
+router.get("/subcategory-delete/:id", session.Auth,session.isAdmin, function (req, res, next) {
   subcategory.Delete(req, res);
 });
 
-router.get("/subcategory-edit/:id", session.Auth, function (req, res, next) {
+router.get("/subcategory-edit/:id", session.Auth,session.isAdmin, function (req, res, next) {
   subcategory.Edit(req, res);
 });
 
-router.post("/subcategory-edit/:id", session.Auth, function (req, res, next) {
+router.post("/subcategory-edit/:id", session.Auth,session.isAdmin, function (req, res, next) {
   subcategory.Update(req, res);
 });
 

@@ -1,17 +1,32 @@
 var express = require("express");
+const bcrypt = require("bcryptjs")
 var nodemailer = require("nodemailer");
 var router = express.Router();
 var db = require("../database/config.js");
-const { encrypt, decrypt } = require("../crypto");
+
 
 function Register(req, res) {
   inputData = {
     name: req.body.name,
     email: req.body.email,
-    password: encrypt(req.body.password),
+    password:req.body.password,
     user_type: "general",
   };
-
+  const saltRounds = 10;
+  bcrypt.genSalt(saltRounds, function (err, salt) {
+    if (err) {
+      throw err
+    } else {
+      bcrypt.hash(inputData.password, salt, function(err, hash) {
+        if (err) {
+          throw err
+        } else {
+          console.log(hash)
+       
+        }
+      })
+    }
+  })
   // check unique email address
   var sql = "SELECT * FROM Users WHERE email =?";
   db.query(sql, [inputData.email_address], function (err, data, fields) {
@@ -70,6 +85,21 @@ function AdminRegister(req, res) {
     password: req.body.password,
     user_type: "admin",
   };
+  const saltRounds = 10;
+  bcrypt.genSalt(saltRounds, function (err, salt) {
+    if (err) {
+      throw err
+    } else {
+      bcrypt.hash(password, salt, function(err, hash) {
+        if (err) {
+          throw err
+        } else {
+          console.log(hash)
+          //$2a$10$FEBywZh8u9M0Cec/0mWep.1kXrwKeiWDba6tdKvDfEBjyePJnDT7K
+        }
+      })
+    }
+  })
 
   // check unique email address
   var sql = "SELECT * FROM Users WHERE email =?";

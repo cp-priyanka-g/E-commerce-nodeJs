@@ -29,6 +29,7 @@ function subcategorybyid(req, response) {
 }
 
 function searchproductbyprice(req, res) {
+  res.render("searchprice", { data: "" });
   var startprice = req.query.startprice;
   var endprice = req.query.endprice;
 
@@ -38,7 +39,7 @@ function searchproductbyprice(req, res) {
     function (err, rows) {
       if (err) {
         req.flash("error", err);
-        res.render("searchprice", { data: "" });
+        res.render("searchprice", { data: err });
       } else {
         console.log(rows);
         res.render("searchprice", { data: rows });
@@ -48,6 +49,7 @@ function searchproductbyprice(req, res) {
 }
 
 function searchproductbyname(req, res) {
+  res.render("searchbyname",{ data: "" });
   var name = req.body.name;
 
   db.query(
@@ -56,10 +58,11 @@ function searchproductbyname(req, res) {
     function (err, rows) {
       if (err) {
         req.flash("error", err);
-        res.render("searchname", { data: " " });
+        
+        res.render("searchbyname", { data: err });
       } else {
         console.log(rows);
-        res.render("searchname", { data: rows });
+        res.render("searchbyname", { data: rows });
       }
     }
   );
