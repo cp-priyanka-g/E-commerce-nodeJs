@@ -29,36 +29,35 @@ function subcategorybyid(req, response) {
 }
 
 function searchproductbyprice(req, res) {
-  res.render("searchprice", { data: "" });
-  var startprice = req.query.startprice;
-  var endprice = req.query.endprice;
+
+  inputData = {
+     startprice:req.query.price1,
+     endprice:req.query.price2,
+  };
 
   db.query(
-    "SELECT  *from Product where price >= ? AND price <=?",
-    [startprice, endprice],
+    "SELECT  *from Product where price >=? AND price <=?",
+    [inputData.startprice,inputData.endprice],
     function (err, rows) {
       if (err) {
         req.flash("error", err);
-        res.render("searchprice", { data: err });
+        res.render("searchbyprice", { data: err });
       } else {
         console.log(rows);
-        res.render("searchprice", { data: rows });
+        res.render("searchbyprice", { data: rows });
       }
     }
   );
 }
 
-function searchproductbyname(req, res) {
-  res.render("searchbyname",{ data: "" });
-  var name = req.body.name;
-
+function searchproductbyname(req, res) { 
+  var product_name = req.query.product_name;
   db.query(
     "SELECT  *from Product where name like ?",
-    name,
+    product_name,
     function (err, rows) {
       if (err) {
-        req.flash("error", err);
-        
+        req.flash("error", err);        
         res.render("searchbyname", { data: err });
       } else {
         console.log(rows);
@@ -67,7 +66,6 @@ function searchproductbyname(req, res) {
     }
   );
 }
-
 module.exports = {
   subcategorybyid,
   categoryproductbyid,

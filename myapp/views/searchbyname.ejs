@@ -9,38 +9,38 @@
     <title>Product</title>
 </head>
 <body>
-    <%- include('header.ejs') %>  
-    <form class="form-inline" action="/search-byname" method="get">
+        <%- include('header.ejs') %>  
      
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="inputPassword2" class="sr-only">Product name</label>
-          <input type="text" class="form-control" id="inputPassword2" name="name" placeholder="Product name">
+    <form action="/search-byname" method="get">
+        <div class="form-row">
+          <div class="col">
+            <input type="text" class="form-control" name="product_name" placeholder="Product Name">
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary mb-2">Search</button>
+             <button type="submit" class="btn btn-primary mb-2">Search</button>
       </form>
       <table border="1">
         <tr>
             <th>S.N</th>
             <th>Product</th>
-            <th>Description</th>
             <th>Price</th>          
         </tr>
-        
-        <%
+         <%
         if(data.length!=0){
         var i=1;
         data.forEach(function(data){
         %>
+
         <tr>
             <td><%=i; %></td>
-            <td><%=data.product_name  %></td>
             <td><%=data.Description  %></td>
             <td><%=data.price  %></td>
+            
              </tr>
         <%  i++; }) %>
         <% } else{ %>
             <tr>
-                <td colspan="7">Search Product HERE</td>
+                <td colspan="7">Search Product By Name</td>
             </tr>
         <% } %>
     </table>

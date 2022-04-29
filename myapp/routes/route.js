@@ -120,7 +120,7 @@ router.get(
     products.Product(req, response);
   }
 );
-router.get("/product-show", session.Auth,session.isAdmin, function (req, response, next) {
+router.get("/product-show", session.Auth, function (req, response, next) {
   products.Productshow(req, response);
 });
 
@@ -154,23 +154,15 @@ router.get("/search-category", session.Auth ,function (req, response, next) {
   search.categoryproductbyid(req, response);
 });
 
-// router.get("/search-byprice", session.Auth, function (req, response, next) {
-//   response.render("searchbyprice");
-// });
 
 router.get("/search-byprice", session.Auth, function (req, response, next) {
-  response.render("searchbyprice",{data:""});
   search.searchproductbyprice(req, response);
+  
 });
 
 router.get("/search-byname", session.Auth, function (req, response, next) {
- response.render("searchbyname",{data:""});
-  search.searchproductbyname(req, response);
+   search.searchproductbyname(req, response);
 });
-
-// router.post("/search-byname", session.Auth, function (req, response, next) {
-//     search.searchproductbyname(req, response);
-// });
 
 // Subcategory Route
 

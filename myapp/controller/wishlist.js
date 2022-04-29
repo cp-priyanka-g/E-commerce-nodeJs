@@ -7,16 +7,13 @@ function Create(req, res) {
   sql = `INSERT INTO Favourite (pid,id) VALUES ("${pid}","${userid}")`;
   db.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("record inserted");
-    //var msg = "category inserted Successfully";
-    console.log("Add to favourite Product");
-    res.send("Added to favourite Product");
+     res.send("Added to favourite Product");
   });
 }
 
 function Delete(req, response) {
   let favourites_id = req.params.id;
-  console.log(favourites_id);
+ 
   db.query(
     "DELETE FROM Favourite where fid=" + favourites_id,
     function (err, rows) {
@@ -24,7 +21,7 @@ function Delete(req, response) {
         req.flash("error", err);
         response.render("product");
       } else {
-        console.log("Unfavourite Product");
+      
         response.send("Unfavourite Product");
         response.render("subcategory");
       }

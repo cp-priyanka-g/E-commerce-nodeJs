@@ -95,7 +95,7 @@ function AdminRegister(req, res) {
           throw err
         } else {
           console.log(hash)
-          //$2a$10$FEBywZh8u9M0Cec/0mWep.1kXrwKeiWDba6tdKvDfEBjyePJnDT7K
+    
         }
       })
     }
