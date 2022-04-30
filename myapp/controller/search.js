@@ -43,7 +43,7 @@ function searchproductbyprice(req, res) {
         req.flash("error", err);
         res.render("searchbyprice", { data: err });
       } else {
-        console.log(rows);
+        
         res.render("searchbyprice", { data: rows });
       }
     }
@@ -51,20 +51,18 @@ function searchproductbyprice(req, res) {
 }
 
 function searchproductbyname(req, res) { 
-  //res.render("searchbyname", { Userdata: ""});
+  
   inputData = {
    product_name:req.query.product_name,
  };
  console.log("Product name :",inputData.product_name)
   db.query(
-    "SELECT  *from Product where name like ?",
-    inputData.product_name,
-    function (err, rows) {
+    "SELECT * FROM Product WHERE product_name=? ",[inputData.product_name],function (err, rows) {
       if (err) {
-        req.flash("error", err);        
+             req.flash("error", err);        
         res.render("searchbyname", { Userdata: err });
       } else {
-        console.log(rows);
+        
         res.render("searchbyname", { Userdata: rows });
       }
     }
