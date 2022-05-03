@@ -3,13 +3,13 @@ var router = express.Router();
 var db = require("../database/config.js");
 const flash = require("connect-flash");
 router.use(flash());
-var products = require("../controller/all_product.js");
-var category = require("../controller/all_categories.js");
+var products = require("../controller/Products.js");
+var category = require("../controller/Categories.js");
 var favourite = require("../controller/wishlist.js");
 var login = require("../controller/login.js");
 var register = require("../controller/register.js");
 var search = require("../controller/search.js");
-var subcategory = require("../controller/all_subcategories.js");
+var subcategory = require("../controller/Subcategories.js");
 const sendMail = require("../controller/mail.js");
 var session = require("../middleware/auth.js");
 
