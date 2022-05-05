@@ -30,3 +30,37 @@ app.use("/", appRouter);
 app.listen(3000, () => {
   console.log(`Server Started...listening on port 3000`);
 });
+//SOLUTION 1
+
+// app.all("/api/*", function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
+//   res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+//   return next();
+// });
+
+// app.all("/api/*", function(req, res, next) {
+//   if (req.method.toLowerCase() !== "options") {
+//     return next();
+//   }
+//   return res.send(204);
+// });
+
+//SOLUTION 2
+
+const cors=require("cors");
+app.use(cors({
+   credentials: true, // for authorization
+}));
+
+//SOLUTION 3
+// const cors = require('cors');
+// const corsOptions ={
+//     origin:'http://localhost:3000', 
+//     credentials:true,            //access-control-allow-credentials:true
+//     optionSuccessStatus:200
+// }
+// app.use(cors(corsOptions));
+
+//Solution 4
+
