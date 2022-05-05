@@ -14,6 +14,10 @@ const sendMail = require("../controller/mail.js");
 var session = require("../middleware/auth.js");
 
 // Registration Route
+router.get("/", function (req, res, next) {
+  res.render("index");
+});
+
 // to display registration form
 router.get("/register", function (req, res, next) {
   res.render("registration-form");
@@ -33,7 +37,7 @@ router.post("/admin/register", function (req, res) {
 
 /* GET users listing. */
 
-router.get("/admindashboard", function (req, res, next) {
+router.get("/admindashboard", session.Auth, session.isAdmin,function (req, res, next) {
   if (req.session.loggedinUser) {
     res.render("admindashboard", { email: req.session.emailAddress });
   } else {
@@ -57,7 +61,7 @@ router.get("/logout", function (req, res) {
 });
 
 //Category Route
-router.get("/category-list", session.Auth, function (req, response, next) {
+router.get("/category-list", session.Auth, session.isAdmin,function (req, response, next) {
   category.Category(req, response);
 });
 
@@ -65,7 +69,7 @@ router.get("/category-show", session.Auth, function (req, response, next) {
   category.Categoryshow(req, response);
 });
 
-router.get("/category-add", session.Auth, function (req, res, next) {
+router.get("/category-add", session.Auth,session.isAdmin,function (req, res, next) {
   res.render("category/create");
 });
 
@@ -73,15 +77,15 @@ router.post("/category-add", session.Auth, function (req, res, next) {
   category.Create(req, res);
 });
 
-router.get("/category-delete/:id", session.Auth, function (req, res, next) {
+router.get("/category-delete/:id", session.Auth,session.isAdmin, function (req, res, next) {
   category.Delete(req, res);
 });
 
-router.get("/category-edit/:id", session.Auth, function (req, res, next) {
+router.get("/category-edit/:id", session.Auth,session.isAdmin, function (req, res, next) {
   category.Edit(req, res);
 });
 
-router.post("/category-edit/:id", session.Auth, function (req, res, next) {
+router.post("/category-edit/:id", session.Auth,session.isAdmin, function (req, res, next) {
   category.Update(req, res);
 });
 
