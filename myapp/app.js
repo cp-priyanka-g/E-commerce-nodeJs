@@ -2,8 +2,11 @@ const mysql = require("mysql");
 const express = require("express");
 const sessions = require("express-session");
 const path = require("path");
-var connection = require("./database/config.js");
+
 var appRouter = require("./routes/route.js");
+const cors = require('cors');
+
+   
 
 const app = express();
 const oneDay = 1000 * 60 * 60 * 24;
@@ -48,10 +51,10 @@ app.listen(3000, () => {
 
 //SOLUTION 2
 
-const cors=require("cors");
-app.use(cors({
-   credentials: true, // for authorization
-}));
+// const cors=require("cors");
+// app.use(cors({
+//    credentials: true, // for authorization
+// }));
 
 //SOLUTION 3
 // const cors = require('cors');
@@ -63,4 +66,22 @@ app.use(cors({
 // app.use(cors(corsOptions));
 
 //Solution 4
+// var cors = require('cors')
+
+// app.use(cors())
+//solution 5
+
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+}
+
+  app.use(allowCrossDomain);
+ 
+
+
+
+
 
