@@ -10,7 +10,7 @@ const cors = require('cors');
 
 const app = express();
 const oneDay = 1000 * 60 * 60 * 24;
-
+ 
 //session middleware
 app.use(
   sessions({
@@ -32,6 +32,21 @@ app.use("/", appRouter);
 
 app.listen(3000, () => {
   console.log(`Server Started...listening on port 3000`);
+});
+//SOLUTION 1
+
+app.all("/*", function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+  return next();
+});
+
+app.all("/*", function(req, res, next) {
+  if (req.method.toLowerCase() !== "options") {
+    return next();
+  }
+  return res.send(204);
 });
 //SOLUTION 1
 
@@ -79,6 +94,7 @@ var allowCrossDomain = function(req, res, next) {
 }
 
   app.use(allowCrossDomain);
+
  
 
 
