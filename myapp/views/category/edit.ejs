@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Category</title>
+</head>
+<body>
+     <!-- <%- include('../adminheader.ejs') %>  -->
+     <div>
+           <form action="<%=(typeof editData!='undefined')?'/category-edit/'+editData.cid:'/category/category'%>" method="POST">
+            <label>Category Name</label>
+            <input type="text" placeholder="Category Name" name="category_name" required value="<%=(typeof editData!='undefined')? editData.category_name:''%>">
+          
+            <label>Product ID</label>
+            <input type="text" placeholder="Category Name" name="pid" required value="<%=(typeof editData!='undefined')? editData.pid:''%>">
+
+            <button type="submit">Submit</button>
+          </form>
+  </div>
+</body>
+</html>
